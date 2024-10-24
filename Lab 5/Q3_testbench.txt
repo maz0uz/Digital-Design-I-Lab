@@ -6,7 +6,7 @@ reg  [1:0] en;
 wire [11:0] out;
 wire [3:0] anode;
 
-RQ3 Report5Q3_DUT (en, out, anode);
+RQ3 Report5_DUT (en, out, anode);
 
 initial begin
 
