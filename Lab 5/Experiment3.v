@@ -24,12 +24,7 @@ module Experiment3(input [0:3] x, output reg [0:6] out, input en, output reg [3:
 
     always @ (*) begin
         if(en== 1'b1) begin
-            case(dig)
-                0: anode = 4'b0111;
-                1: anode = 4'b1011;
-                2: anode = 4'b1101;
-                3: anode = 4'b1110;
-            endcase
+            anode = 4'b1110;
             case(x)
                 0: out = 7'b0000001;
                 1: out = 7'b1001111;
