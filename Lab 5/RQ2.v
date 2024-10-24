@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module ReportQ2(input [0:2] x, output reg [0:6] out, output reg [3:0] anode);
+module RQ2(input [0:2] x, output reg [0:6] out, output reg [3:0] anode);
 
     always @ (*) begin
         anode = 4'b1110;
