@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module LabReport5Q3 (input [1:0] en, output reg [11:0] out, output reg [3:0] anode);
+module RQ3 (input [1:0] en, output reg [11:0] out, output reg [3:0] anode);
  
  reg [2:0] c=d0, d1, d2, d3;
  always @ (en) begin
