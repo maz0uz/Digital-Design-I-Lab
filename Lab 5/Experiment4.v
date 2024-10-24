@@ -1,3 +1,25 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 10/15/2024 03:35:21 PM
+// Design Name: 
+// Module Name: Experiment2
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
 module Experiment3(input [0:3] x, output reg [0:6] out, input en, output reg [3:0] anode, input [0:1] dig);
 
     always @ (*) begin
