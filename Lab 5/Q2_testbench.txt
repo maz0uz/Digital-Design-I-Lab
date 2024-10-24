@@ -5,7 +5,7 @@ module Q2_Testbench();
 reg [2:0] val;
 wire [0:6] seg;
 
-LabReport5 LabReport5_DUT (num, seg);
+RQ2 Report5_DUT (val, seg);
 
 initial begin
 val = 3'b000;
