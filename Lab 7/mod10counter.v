@@ -22,8 +22,8 @@
 
 module mod10counter(input reset, enable, clk, output [3:0] out);
 
-    reg clk_out;
+    wire clk_out;
     clockDivider #(50000000) clockDiv(.clk(clk), .rst(reset), .en(enable), .clk_out(clk_out));
-    counter_x_bit #(4, 10) mod10(.clk(clk_out), .rst(reset), .en(enable), .count(out));
+    counter_x_bit #(4, 10) mod10(.clk(clk_out), .reset(reset), .en(enable), .count(out));
 
 endmodule

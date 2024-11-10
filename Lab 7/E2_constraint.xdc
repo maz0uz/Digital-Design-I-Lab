@@ -9,4 +9,3 @@ set_property IOSTANDARD LVCMOS33 [get_ports clk_out]
 
 set_property PACKAGE_PIN V16 [get_ports en]
 set_property IOSTANDARD LVCMOS33 [get_ports en]
-
