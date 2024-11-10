@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 10/29/2024 03:46:29 PM
+// Create Date: 11/10/2024 06:43:38 PM
 // Design Name: 
-// Module Name: E2
+// Module Name: mod10counter
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,13 +20,10 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module clockDivider #(parameter n = 50000000) (input clk, rst, en, output reg clk_out);
-    wire [31:0] count;
-    counter_x_bit #(32,n) counterMod (.clk(clk), .reset(rst), .en(en), .count(count));
-    always @ (posedge clk, posedge rst) begin
-        if (rst)
-            clk_out <= 0;
-        else if (count == n-1)
-            clk_out <= ~ clk_out;
-    end
+module mod10counter(input reset, enable, clk, output [3:0] out);
+
+    reg clk_out;
+    clockDivider #(50000000) clockDiv(.clk(clk), .rst(reset), .en(enable), .clk_out(clk_out));
+    counter_x_bit #(4, 10) mod10(.clk(clk_out), .rst(reset), .en(enable), .count(out));
+
 endmodule

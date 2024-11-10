@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 10/29/2024 03:46:29 PM
+// Create Date: 11/10/2024 07:00:42 PM
 // Design Name: 
-// Module Name: E2
+// Module Name: secMinCount
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,13 +20,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module clockDivider #(parameter n = 50000000) (input clk, rst, en, output reg clk_out);
-    wire [31:0] count;
-    counter_x_bit #(32,n) counterMod (.clk(clk), .reset(rst), .en(en), .count(count));
-    always @ (posedge clk, posedge rst) begin
-        if (rst)
-            clk_out <= 0;
-        else if (count == n-1)
-            clk_out <= ~ clk_out;
-    end
+module secMinCount();
+    
+
+    
 endmodule
