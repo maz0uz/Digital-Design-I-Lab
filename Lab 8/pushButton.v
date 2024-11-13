@@ -21,18 +21,17 @@
 
 
 module pushButton(
-    input A,
-    input clk,
+    input A, clk, rst,
     
     output z
     );
     
-    wire clk_out;
+    // wire clk_out;
     wire B, C;
     
-    // clockDivider #(500000) myclk( .clk(clk), .rst(0), .en(1), .clk_out(clk_out) );
+    // clockDivider #(500000) myclk( .clk(clk), .rst(rst), .en(1), .clk_out(clk_out) );
     
-    debouncer mydeb(.clk(clk) , .rst(0), .in(A), .out(B) );
+    debouncer mydeb(.clk(clk) , .rst(rst), .in(A), .out(B) );
     
     synchronizer mysync(.clk(clk) , .SIG(B), .SIG1(C) );
     

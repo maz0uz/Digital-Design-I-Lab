@@ -31,34 +31,42 @@ module dig_lock(
     wire [3:0]out;
     wire clk_out;
     
-    reg [1:0] state, nextState;
+    reg [2:0] state, nextState;
     
     parameter [2:0] A=3'b000 , B=3'b001 , C=3'b010 , D=3'b011, T=3'b100;
     
-    clockDivider #(500000) myclk( .clk(clk), .rst(0), .en(1), .clk_out(clk_out) );
+    clockDivider #(500000) myclk( .clk(clk), .rst(rst), .en(1), .clk_out(clk_out) );
     
-    pushButton butA( .A(in[0]), .clk(clk_out), .z(out[0]) );
+    pushButton butA( .A(in[0]), .clk(clk_out), .rst(rst), .z(out[0]) );
     
-    pushButton butB( .A(in[1]), .clk(clk_out), .z(out[1]) );
+    pushButton butB( .A(in[1]), .clk(clk_out), .rst(rst), .z(out[1]) );
     
-    pushButton butC( .A(in[2]), .clk(clk_out), .z(out[2]) );
+    pushButton butC( .A(in[2]), .clk(clk_out), .rst(rst), .z(out[2]) );
     
-    pushButton butD( .A(in[3]), .clk(clk_out), .z(out[3]) );
+    pushButton butD( .A(in[3]), .clk(clk_out), .rst(rst), .z(out[3]) );
     
     always @ (out or state)
         case (state)
         A: if (out==4'b1000) nextState = B;
            else nextState = A;
-        B: if (out==4'b0010 || out==4'b0000) nextState = C;
-           else nextState = A;
-        C: if (out==4'b0001 || out==4'b0000) nextState = D;
-           else nextState = A;
-        D: if (out==4'b0100 || out==4'b0000) nextState = T;
-           else nextState = A;
-        T: nextState = T;
+        B: begin 
+                if (out==4'b0010) nextState = C;
+                else if (out==4'b0000) nextState = B;
+                else nextState = A;
+           end
+        C: begin
+               if (out==4'b0001 || out==4'b0000) nextState = D;
+               else if (out==4'b0000) nextState = C;
+               else nextState = A;
+           end
+        D: begin
+               if (out==4'b0100 || out==4'b0000) nextState = T;
+               else if (out==4'b0000) nextState = D;
+               else nextState = A;
+           end
 
         default: nextState = A;
-    endcase
+        endcase
     
     always @ (posedge clk_out or posedge rst) begin
         if(rst) state <= A;
